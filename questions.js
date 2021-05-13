@@ -155,10 +155,10 @@ const createTemplate = (employees) => {
   });
  
       fs.appendFile('index.html', htmlContent, (err) =>
-        err ? console.log(err) : console.log('Successfully created readme.html!')
+        err ? console.log(err) : console.log('Successfully appended html!')
       );
       fs.appendFile('index.html', '</div></body>', (err) =>
-        err ? console.log(err) : console.log('Successfully created readme.html!')
+        err ? console.log(err) : console.log('Successfully appended html!')
       );
    }
 
