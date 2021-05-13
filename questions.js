@@ -10,10 +10,13 @@ const fs = require("fs");
 const MANAGER = "MANAGER"
 const ENGINEER = "ENGINEER"
 const INTERN = "INTERN"
+const NO = "NO"
+const YES = "YES"
 
 const PEOPLE = []
-
-const promptType = inquirer.prompt([
+ 
+const init = () => {
+inquirer.prompt([
     {
     name: 'UserType',
     type: 'list',
@@ -49,12 +52,6 @@ const promptType = inquirer.prompt([
         message: 'What is your team managers office number?',
         when: (answers) => answers.UserType === MANAGER
       },
-      // {
-      //   type: 'input',
-      //   name: 'createNew',
-      //   message: 'would you like to add another employee?',
-      //   when: (answers) => answers.UserType === MANAGER
-      // },
       {
         type: 'input',
         name: 'engineersname',  
@@ -103,36 +100,65 @@ const promptType = inquirer.prompt([
         message: 'What is your Interns School?',
         when: (answers) => answers.UserType === INTERN
       },
+      {
+        type: 'list',
+        name: 'createNew',
+        message: 'would you like to add another employee?',
+        choices: [
+          {name: "Yes", value: "YES"},
+        {name: "No", value: "NO"},
+        ]
+      },
 ])
+.then((answers) => {
+  if (answers.UserType = MANAGER) {
+      PEOPLE.push(new Manager(answers.managername, answers.managerid, answers.manageremail, answers.managerphnumber))
+  }
+  if (answers.UserType = ENGINEER){
+    PEOPLE.push(new Engineer(answers.engineersname, answers.engineersid, answers.engineersemail, answers.engineersgithub))
+  }
+  if (answers.UserType = INTERN){
+   PEOPLE.push(new Intern(answers.internsname, answers.internsid, answers.internsemail, answers.internsschool))
+ }
+  if (answers.createNew = YES) {
+      init();
+  }
+  if (answers.createNew = NO){
+    return PEOPLE
+  }
+})
+.then((answers) => {
+  console.log(answers)
+ const htmlContent = render(answers)
 
+     fs.appendFile('index.html', htmlContent, (err) =>
+       err ? console.log(err) : console.log('Successfully created readme.html!')
+     );
+   });
+  }
 
+  init()
     
  //outputting answers to manager/engineer/intern class or ask again 
-.then((answers) => {
-     if (answers.UserType = MANAGER) {
-         PEOPLE.push(new Manager(answers.managername, answers.managerid, answers.manageremail, answers.managerphnumber))
-     }
-     if (answers.UserType = ENGINEER){
-       PEOPLE.push(new Engineer(answers.engineersname, answers.engineersid, answers.engineersemail, answers.engineersgithub))
-     }
-     if (answers.UserType = INTERN){
-      PEOPLE.push(new Intern(answers.internsname, answers.internsid, answers.internsemail, answers.internsschool))
-    }
-     if (answers.createNew) {
-         init();
-     }
-     return PEOPLE
- })
+// .then((answers) => {
+//      if (answers.UserType = MANAGER) {
+//          PEOPLE.push(new Manager(answers.managername, answers.managerid, answers.manageremail, answers.managerphnumber))
+//      }
+//      if (answers.UserType = ENGINEER){
+//        PEOPLE.push(new Engineer(answers.engineersname, answers.engineersid, answers.engineersemail, answers.engineersgithub))
+//      }
+//      if (answers.UserType = INTERN){
+//       PEOPLE.push(new Intern(answers.internsname, answers.internsid, answers.internsemail, answers.internsschool))
+//     }
+//      if (answers.createNew = MANAGER || ENGINEER || INTERN) {
+//          init;
+//      }
+//     //  if (answers.createNew = EXIT){
+//     //    return PEOPLE
+//     //  }
+//     //  return PEOPLE
+//  })
  
-//  .then(() => console.log(PEOPLE))
- .then((answers) => {
-   console.log(answers)
-  const htmlContent = render(answers)
 
-      fs.writeFile('answers.html', htmlContent, (err) =>
-        err ? console.log(err) : console.log('Successfully created readme.html!')
-      );
-    });
-//  exports.prompt = prompt
-// const init = () =>
-// promptType().
+
+

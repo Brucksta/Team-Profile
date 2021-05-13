@@ -18,15 +18,15 @@ const generateHtml = (answers) =>
         <div class="card">
             <header class="card-header">
                 <p class="card-header-title">
-                 "Employee Name: ${answers[0].fullName}"
+                Employee Name: ${answers[0].fullName}
                 </p>
             </header>
             <div class="card-content">
               <div class="content">
-             <p>Employee ID: ${answers[0].id}
-               Employee email: ${answers[0].email}
-               Employee OfficeNumber: ${answers[0].officeNumber} 
-            </p>
+             <p>Employee ID: ${answers[0].id}</p>
+               <p>Employee email: ${answers[0].email}</p>
+               <p>Employee OfficeNumber: ${answers[0].officeNumber} </p>
+            
               </div>
             </div>
           </div>
