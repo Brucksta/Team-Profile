@@ -142,13 +142,12 @@ const createTemplate = (employees) => {
     if (employee instanceof Manager)
     {
       htmlContent += managerHtml(employee)
-      console.log("in here")
     } 
     else if (employee instanceof Engineer)
     {
       htmlContent += engineerHtml(employee)
     }
-    else (employee instanceof Intern)
+    else if (employee instanceof Intern)
     {
       htmlContent += internHtml(employee)
     }

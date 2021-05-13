@@ -12,3 +12,8 @@
     display: flex;
     flex-direction: row;
 }
+
+.content {
+  justify-content: center;
+  align-items: center;
+}
