@@ -1,4 +1,4 @@
-const managerHtml = (answers) => {
+const engineerHtml = (answers) => {
 return `<div class='cards'>
         <div class="card">
             <header class="card-header">
@@ -18,4 +18,4 @@ return `<div class='cards'>
 `
 }
 
-module.exports = managerHtml
+module.exports = engineerHtml

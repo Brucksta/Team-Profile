@@ -3,8 +3,10 @@ const Employee = require('./employee.js');
 const Manager = require('./manager.js');
 const Engineer = require('./engineer.js');
 const Intern = require('./intern.js');
-const render = require('./template.js');
+const managerHtml = require('./template.js');
 const fs = require("fs");
+const internHtml = require('./Itemplate.js');
+const engineerHtml = require('./Etemplate.js');
 
 
 const MANAGER = "MANAGER"
@@ -134,9 +136,28 @@ inquirer.prompt([
 
 const createTemplate = (employees) => {
   console.log(employees)
-  const htmlContent = render(employees)
+  let htmlContent = ""
+  employees.forEach(employee => {
+    console.log(employee)
+    if (employee instanceof Manager)
+    {
+      htmlContent += managerHtml(employee)
+      console.log("in here")
+    } 
+    else if (employee instanceof Engineer)
+    {
+      htmlContent += engineerHtml(employee)
+    }
+    else (employee instanceof Intern)
+    {
+      htmlContent += internHtml(employee)
+    }
+  });
  
       fs.appendFile('index.html', htmlContent, (err) =>
+        err ? console.log(err) : console.log('Successfully created readme.html!')
+      );
+      fs.appendFile('index.html', '</div></body>', (err) =>
         err ? console.log(err) : console.log('Successfully created readme.html!')
       );
    }
