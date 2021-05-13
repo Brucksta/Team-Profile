@@ -1,0 +1,14 @@
+.main-header { 
+    display: block;
+    text-align: center;
+  justify-content: space-between;
+  padding: 20px;
+  background: #d40913;
+  color: #fff;
+  font-size: 50px;
+}
+
+.cards {
+    display: flex;
+    flex-direction: row;
+}

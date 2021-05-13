@@ -1,6 +1,10 @@
 const inquirer = require('inquirer');
-const Employee = require('./employee.js')
-const Manager = require('./manager.js')
+const Employee = require('./employee.js');
+const Manager = require('./manager.js');
+const Engineer = require('./engineer.js');
+const Intern = require('./intern.js');
+const render = require('./template.js');
+const fs = require("fs");
 
 
 const MANAGER = "MANAGER"
@@ -45,6 +49,12 @@ const promptType = inquirer.prompt([
         message: 'What is your team managers office number?',
         when: (answers) => answers.UserType === MANAGER
       },
+      // {
+      //   type: 'input',
+      //   name: 'createNew',
+      //   message: 'would you like to add another employee?',
+      //   when: (answers) => answers.UserType === MANAGER
+      // },
       {
         type: 'input',
         name: 'engineersname',  
@@ -103,16 +113,26 @@ const promptType = inquirer.prompt([
          PEOPLE.push(new Manager(answers.managername, answers.managerid, answers.manageremail, answers.managerphnumber))
      }
      if (answers.UserType = ENGINEER){
-       PEOPLE.push(new ENGINEER(answers.engineersname, answers.engineersid, answers.engineersemail, answers.engineersgithub))
+       PEOPLE.push(new Engineer(answers.engineersname, answers.engineersid, answers.engineersemail, answers.engineersgithub))
      }
      if (answers.UserType = INTERN){
-      PEOPLE.push(new INTERN(answers.internsname, answers.internsid, answers.internsemail, answers.internsschool))
+      PEOPLE.push(new Intern(answers.internsname, answers.internsid, answers.internsemail, answers.internsschool))
     }
      if (answers.createNew) {
          init();
      }
+     return PEOPLE
  })
  
+//  .then(() => console.log(PEOPLE))
+ .then((answers) => {
+   console.log(answers)
+  const htmlContent = render(answers)
+
+      fs.writeFile('answers.html', htmlContent, (err) =>
+        err ? console.log(err) : console.log('Successfully created readme.html!')
+      );
+    });
 //  exports.prompt = prompt
 // const init = () =>
 // promptType().
