@@ -111,54 +111,37 @@ inquirer.prompt([
       },
 ])
 .then((answers) => {
-  if (answers.UserType = MANAGER) {
-      PEOPLE.push(new Manager(answers.managername, answers.managerid, answers.manageremail, answers.managerphnumber))
+  if (answers.UserType === MANAGER)
+  {
+    PEOPLE.push(new Manager(answers.managername, answers.managerid, answers.manageremail, answers.managerphnumber))
   }
-  if (answers.UserType = ENGINEER){
+  if (answers.UserType === ENGINEER){
     PEOPLE.push(new Engineer(answers.engineersname, answers.engineersid, answers.engineersemail, answers.engineersgithub))
   }
-  if (answers.UserType = INTERN){
+  if (answers.UserType === INTERN){
    PEOPLE.push(new Intern(answers.internsname, answers.internsid, answers.internsemail, answers.internsschool))
- }
-  if (answers.createNew = YES) {
-      init();
   }
-  if (answers.createNew = NO){
-    return PEOPLE
+  if (answers.createNew === YES)
+  {
+    init();
+  }
+  if (answers.createNew === NO)
+  {
+    createTemplate(PEOPLE);
   }
 })
-.then((answers) => {
-  console.log(answers)
- const htmlContent = render(answers)
+}
 
-     fs.appendFile('index.html', htmlContent, (err) =>
-       err ? console.log(err) : console.log('Successfully created readme.html!')
-     );
-   });
-  }
-
-  init()
-    
- //outputting answers to manager/engineer/intern class or ask again 
-// .then((answers) => {
-//      if (answers.UserType = MANAGER) {
-//          PEOPLE.push(new Manager(answers.managername, answers.managerid, answers.manageremail, answers.managerphnumber))
-//      }
-//      if (answers.UserType = ENGINEER){
-//        PEOPLE.push(new Engineer(answers.engineersname, answers.engineersid, answers.engineersemail, answers.engineersgithub))
-//      }
-//      if (answers.UserType = INTERN){
-//       PEOPLE.push(new Intern(answers.internsname, answers.internsid, answers.internsemail, answers.internsschool))
-//     }
-//      if (answers.createNew = MANAGER || ENGINEER || INTERN) {
-//          init;
-//      }
-//     //  if (answers.createNew = EXIT){
-//     //    return PEOPLE
-//     //  }
-//     //  return PEOPLE
-//  })
+const createTemplate = (employees) => {
+  console.log(employees)
+  const htmlContent = render(employees)
  
+      fs.appendFile('index.html', htmlContent, (err) =>
+        err ? console.log(err) : console.log('Successfully created readme.html!')
+      );
+   }
 
 
+init()
+    
 
