@@ -2,7 +2,7 @@
 
 
 ## Description:
-It dynamically generates a readme, based on user input. The finished look is professional, and gives a really good standard template for a good readme. The app works by running through Node, prompting the user of different questions that are linked to the format of the READ.me that will be generated. Each question relates to a header, and anything written by the user will be added underneath the associated title. This allows users to simply add the content and then the app generates a professional READ.me. If a user looks at the code or wanted to modify the code, the index contains the main function making the app work, and the other content is modulated into seperate JS files.
+This week ive made a dynamically generated team creator, which would help an owner of a business put together a staff sheet of all his employees. The javascript utilizes Classes which allows employees to be saved under the keys NAME, ID and EMAIL, and then extended to allow for certain key traits to each type of employee. Using Node Inquirer prompts, a boss and easily follow a set of promps which will set up a team sheet that is generated in HTML, perfect for use on their website!
 
 ## Installation:
 Simply download and open in VS code.
